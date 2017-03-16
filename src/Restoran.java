@@ -1,10 +1,15 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,12 +23,39 @@ import javax.swing.table.DefaultTableModel;
  * @author Mochammad Alauddin
  */
 public class Restoran extends javax.swing.JFrame {
-
+String jns = "";
+Double m,n,b,v,c,x,z,l,k,j,h;
+    int jml;
+    Double q,w ;
+       
+    
     /**
      * Creates new form Restoran
      */
     public Restoran() {
         initComponents();
+            jComboBox9.setVisible(false);
+            a5.setVisible(false);
+            a6.setVisible(false);
+            b5.setVisible(false);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            min2.setVisible(false);
+            a9.setVisible(false);
+            b9.setVisible(false);
+            jComboBox2.setVisible(true);
+            jComboBox8.setVisible(false);
+            min.setVisible(true);
+            min1.setVisible(false);
+        jComboBox6.setVisible(false);
+            jComboBox7.setVisible(false);
+            mak2.setVisible(false);
+            mak3.setVisible(false);
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(false);
+            mak.setVisible(true);
+            mak1.setVisible(false);
     }
 
     /**
@@ -41,13 +73,12 @@ public class Restoran extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         labeltanggal = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        kasir = new javax.swing.JTextField();
+        jamlabel = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        kasir = new javax.swing.JLabel();
+        makan1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         mak_harga = new javax.swing.JTextField();
         min_harga = new javax.swing.JTextField();
@@ -67,6 +98,43 @@ public class Restoran extends javax.swing.JFrame {
         mak = new javax.swing.JTextField();
         min = new javax.swing.JTextField();
         diskon = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jml1 = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        jml2 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jComboBox8 = new javax.swing.JComboBox<>();
+        jComboBox9 = new javax.swing.JComboBox<>();
+        mak1 = new javax.swing.JTextField();
+        mak2 = new javax.swing.JTextField();
+        mak3 = new javax.swing.JTextField();
+        min1 = new javax.swing.JTextField();
+        min2 = new javax.swing.JTextField();
+        a5 = new javax.swing.JComboBox<>();
+        a6 = new javax.swing.JComboBox<>();
+        a7 = new javax.swing.JComboBox<>();
+        b5 = new javax.swing.JTextField();
+        b6 = new javax.swing.JTextField();
+        b7 = new javax.swing.JTextField();
+        a9 = new javax.swing.JComboBox<>();
+        b9 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        makan2 = new javax.swing.JLabel();
+        makan3 = new javax.swing.JLabel();
+        makan4 = new javax.swing.JLabel();
+        minum10 = new javax.swing.JLabel();
+        minum2 = new javax.swing.JLabel();
+        makan7 = new javax.swing.JLabel();
+        makan8 = new javax.swing.JLabel();
+        minum3 = new javax.swing.JLabel();
+        makan6 = new javax.swing.JLabel();
+        minum4 = new javax.swing.JLabel();
+        makan9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -85,6 +153,14 @@ public class Restoran extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         save = new javax.swing.JButton();
         delete = new javax.swing.JButton();
@@ -94,6 +170,8 @@ public class Restoran extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
+        jLabel40 = new javax.swing.JLabel();
+        id_tran = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -111,73 +189,92 @@ public class Restoran extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Restoran KU");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Restoran yang nyata");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tanggal :");
+        jLabel3.setText("Tanggal & Jam:");
 
-        labeltanggal.setFont(new java.awt.Font("Times New Roman", 2, 11)); // NOI18N
+        labeltanggal.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         labeltanggal.setForeground(new java.awt.Color(255, 255, 255));
+
+        jamlabel.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
+        jamlabel.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel32.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Kasir    :");
+
+        kasir.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
+        kasir.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
+                        .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
                         .addComponent(labeltanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+                        .addGap(36, 36, 36)
+                        .addComponent(jamlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jamlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labeltanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel2.setForeground(new java.awt.Color(153, 153, 255));
+        makan1.setBackground(new java.awt.Color(204, 204, 255));
+        makan1.setForeground(new java.awt.Color(153, 153, 255));
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jLabel4.setText("Kasir");
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Makanan");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 102));
         jLabel6.setText("Minuman");
 
-        id.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jLabel25.setText("ID Transaksi");
-
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 204, 102));
         jLabel26.setText("Harga Makanan");
 
         mak_harga.setEditable(false);
+        mak_harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mak_hargaActionPerformed(evt);
+            }
+        });
 
         min_harga.setEditable(false);
         min_harga.addActionListener(new java.awt.event.ActionListener() {
@@ -187,12 +284,13 @@ public class Restoran extends javax.swing.JFrame {
         });
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 204, 102));
         jLabel28.setText("Harga Minuman");
 
-        jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel27.setText("Total");
 
-        jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel29.setText("Bayar");
 
         bayar.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +299,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
-        jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel30.setText("Kembali");
 
         kmbl.setEditable(false);
@@ -211,6 +309,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton1.setText("Total");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +317,8 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
-        kembali.setText("Kembali");
+        kembali.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        kembali.setText("Kembalian");
         kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembaliActionPerformed(evt);
@@ -232,14 +332,14 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nasi Pecel", "Rawon", "Soto", "Bacem" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Es Teh", "Es Jeruk", "Es Ijoh" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Minuman--", "Es Teh", "Es Jeruk", "Es Ijoh", "Es Aja KL" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -270,165 +370,581 @@ public class Restoran extends javax.swing.JFrame {
 
         diskon.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel28)
-                    .addComponent(mak_harga)
-                    .addComponent(kasir)
-                    .addComponent(id)
-                    .addComponent(min_harga)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mak))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(min, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)))
-                .addGap(60, 60, 60)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30)
-                    .addComponent(bayar, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(kmbl)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(kembali)
-                        .addGap(10, 10, 10))
-                    .addComponent(total))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(makan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(minum, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 125, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(diskon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 153, 255));
+        jLabel7.setText("Jml");
+
+        jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 153, 255));
+        jLabel31.setText("Jml");
+
+        jPanel7.setBackground(new java.awt.Color(153, 153, 255));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel27))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diskon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel29))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(makan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(kmbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel33.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel33.setText("Pesan Makanan");
+
+        jml1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        jml1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jml1ActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 0, 102));
+        jLabel34.setText("Pesan Minuman");
+
+        jml2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jml2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jml2ActionPerformed(evt);
+            }
+        });
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox6ActionPerformed(evt);
+            }
+        });
+
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox7ActionPerformed(evt);
+            }
+        });
+
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Minuman--", "Es Teh", "Es Jeruk", "Es Ijoh", "Es Aja KL" }));
+        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox8ActionPerformed(evt);
+            }
+        });
+
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Minuman--", "Es Teh", "Es Jeruk", "Es Ijoh", "Es Aja KL" }));
+        jComboBox9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox9ActionPerformed(evt);
+            }
+        });
+
+        mak1.setText("1");
+        mak1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mak1ActionPerformed(evt);
+            }
+        });
+
+        mak2.setText("1");
+        mak2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mak2ActionPerformed(evt);
+            }
+        });
+
+        mak3.setText("1");
+        mak3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mak3ActionPerformed(evt);
+            }
+        });
+
+        min1.setText("1");
+        min1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                min1ActionPerformed(evt);
+            }
+        });
+
+        min2.setText("1");
+        min2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                min2ActionPerformed(evt);
+            }
+        });
+
+        a5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        a5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a5ActionPerformed(evt);
+            }
+        });
+
+        a6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        a6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a6ActionPerformed(evt);
+            }
+        });
+
+        a7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Makanan--", "Nasi Pecel", "Rawon", "Soto", "Bacem", "Ayam Betutu", "Pizza", "Gorengan Jumbo" }));
+        a7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a7ActionPerformed(evt);
+            }
+        });
+
+        b5.setText("1");
+        b5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b5ActionPerformed(evt);
+            }
+        });
+
+        b6.setText("1");
+        b6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b6ActionPerformed(evt);
+            }
+        });
+
+        b7.setText("1");
+        b7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b7ActionPerformed(evt);
+            }
+        });
+
+        a9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Minuman--", "Es Teh", "Es Jeruk", "Es Ijoh", "Es Aja KL" }));
+        a9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a9ActionPerformed(evt);
+            }
+        });
+
+        b9.setText("1");
+        b9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b9ActionPerformed(evt);
+            }
+        });
+
+        makan2.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan3.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan4.setForeground(new java.awt.Color(204, 204, 255));
+
+        minum10.setForeground(new java.awt.Color(204, 204, 255));
+
+        minum2.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan7.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan8.setForeground(new java.awt.Color(204, 204, 255));
+
+        minum3.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan6.setForeground(new java.awt.Color(204, 204, 255));
+
+        minum4.setForeground(new java.awt.Color(204, 204, 255));
+
+        makan9.setForeground(new java.awt.Color(204, 204, 255));
+
+        javax.swing.GroupLayout makan1Layout = new javax.swing.GroupLayout(makan1);
+        makan1.setLayout(makan1Layout);
+        makan1Layout.setHorizontalGroup(
+            makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(makan1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(makan1Layout.createSequentialGroup()
+                                .addComponent(a6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(b6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(makan1Layout.createSequentialGroup()
+                                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mak2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mak1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(mak_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel26)
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mak, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mak3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(a5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel33)
+                                            .addComponent(jLabel5))
+                                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(makan1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jml1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(makan1Layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jLabel7)))))
+                                .addGap(38, 51, Short.MAX_VALUE)
+                                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(min_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(min1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(min2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(makan1Layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                            .addComponent(jLabel31))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, makan1Layout.createSequentialGroup()
+                                            .addComponent(jLabel34)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jml2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(makan1Layout.createSequentialGroup()
+                                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(makan2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(a9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(27, 27, 27))
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addComponent(a7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel26))
-                    .addComponent(minum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mak_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(kembali))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(min_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(makan3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel4)
+                        .addGap(46, 46, 46)))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(makan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(minum, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(diskon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(makan1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel30)
+                            .addComponent(bayar)
+                            .addComponent(kmbl, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27)
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(321, Short.MAX_VALUE)
+                    .addComponent(makan4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(305, 305, 305)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(331, Short.MAX_VALUE)
+                    .addComponent(minum10, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(295, 295, 295)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(341, Short.MAX_VALUE)
+                    .addComponent(minum2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(285, 285, 285)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(351, Short.MAX_VALUE)
+                    .addComponent(makan7, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(275, 275, 275)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(341, Short.MAX_VALUE)
+                    .addComponent(makan8, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(285, 285, 285)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(351, Short.MAX_VALUE)
+                    .addComponent(minum3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(275, 275, 275)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(341, Short.MAX_VALUE)
+                    .addComponent(makan6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(285, 285, 285)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(351, Short.MAX_VALUE)
+                    .addComponent(minum4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(275, 275, 275)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(331, Short.MAX_VALUE)
+                    .addComponent(makan9, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(295, 295, 295)))
+        );
+        makan1Layout.setVerticalGroup(
+            makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, makan1Layout.createSequentialGroup()
+                        .addComponent(diskon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel27)
+                        .addGap(4, 4, 4)
+                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel29)
+                        .addGap(5, 5, 5)
+                        .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(kmbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(kembali))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(makan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(minum, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(makan1Layout.createSequentialGroup()
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(jml1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34)
+                            .addComponent(jml2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel31))
+                        .addGap(5, 5, 5)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(mak1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(min1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(makan1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(min2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mak2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mak3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(a9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(b9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(a5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(a6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(b6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(makan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(makan1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(makan3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(a7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(b7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mak_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(min_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(232, Short.MAX_VALUE)
+                    .addComponent(makan4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(52, 52, 52)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(242, Short.MAX_VALUE)
+                    .addComponent(minum10, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(42, 42, 42)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(252, Short.MAX_VALUE)
+                    .addComponent(minum2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(32, 32, 32)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(262, Short.MAX_VALUE)
+                    .addComponent(makan7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(252, Short.MAX_VALUE)
+                    .addComponent(makan8, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(32, 32, 32)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(262, Short.MAX_VALUE)
+                    .addComponent(minum3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(252, Short.MAX_VALUE)
+                    .addComponent(makan6, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(32, 32, 32)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(262, Short.MAX_VALUE)
+                    .addComponent(minum4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22)))
+            .addGroup(makan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makan1Layout.createSequentialGroup()
+                    .addContainerGap(242, Short.MAX_VALUE)
+                    .addComponent(makan9, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(42, 42, 42)))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
         jPanel4.setForeground(new java.awt.Color(153, 153, 255));
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 3, 11)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 51, 153));
         jLabel9.setText("Rincian Menu");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel8.setText("Makanan");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setText("Minuman");
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel11.setText("Nasi Pecel");
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel11.setText("1. Nasi Pecel");
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel12.setText("Rawon");
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel12.setText("2. Rawon");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel13.setText("Soto");
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel13.setText("3. Soto");
 
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel14.setText("Bacem");
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel14.setText("4. Bacem");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel15.setText("Es Teh");
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel15.setText("1. Es Teh");
 
-        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel16.setText("Es Jeruk");
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel16.setText("2. Es Jeruk");
 
-        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel17.setText("Es Ijoh");
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel17.setText("3. Es Ijoh");
 
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("Rp. 10.000");
 
-        jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel19.setText("Rp. 11.000");
 
-        jLabel20.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel20.setText("Rp. 8.000");
 
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel21.setText("Rp. 4.000");
 
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel22.setText("Rp. 2.500");
 
-        jLabel23.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel23.setText("Rp. 4.000");
 
-        jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel24.setText("Rp. 3.000");
+
+        jLabel25.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel25.setText("5. Ayam Betutu");
+
+        jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel35.setText("Rp. 30.000");
+
+        jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel36.setText("6. Pizza");
+
+        jLabel37.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel37.setText("Rp. 50.000");
+
+        jLabel38.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel38.setText("7. Gorengan Jumbo");
+
+        jLabel39.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel39.setText("Rp. 40.000");
+
+        jLabel42.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel42.setText("4. Es Aja KL");
+
+        jLabel43.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel43.setText("Rp. 15.000");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -437,29 +953,52 @@ public class Restoran extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addComponent(jLabel9)
+                        .addContainerGap(366, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17))
-                        .addGap(51, 51, 51)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel36)
+                                    .addComponent(jLabel38))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jLabel37)
+                                    .addComponent(jLabel39))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel18))))
-                .addContainerGap(266, Short.MAX_VALUE))
+                            .addComponent(jLabel10)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel17))
+                                        .addGap(53, 53, 53)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel24)
+                                            .addComponent(jLabel23)
+                                            .addComponent(jLabel22)))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel42)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jLabel43)))))
+                        .addGap(43, 43, 43))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,42 +1006,61 @@ public class Restoran extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel20)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel24))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel42)
+                        .addComponent(jLabel43))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(jLabel21)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel18))
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel35))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel19))
+                    .addComponent(jLabel36)
+                    .addComponent(jLabel37))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel23))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel24))
+                    .addComponent(jLabel38)
+                    .addComponent(jLabel39))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 255));
 
+        save.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         save.setText("Save");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -510,6 +1068,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -517,6 +1076,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
+        print.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         print.setText("Print");
         print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -524,6 +1084,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
+        print1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         print1.setText("Refresh");
         print1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,6 +1092,7 @@ public class Restoran extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Clear");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,15 +1106,14 @@ public class Restoran extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                            .addComponent(print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(print1)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(print1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(1, 1, 1)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -584,22 +1145,46 @@ public class Restoran extends javax.swing.JFrame {
             new String [] {
                 "ID_Transaksi", "Kasir", "Makanan", "Harga", "Minuman", "Harga", "Bayar", "Kembali", "Total", "Tanggal"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabel);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel40.setText("ID_ Transaksi = ");
+
+        id_tran.setBackground(new java.awt.Color(102, 255, 102));
+        id_tran.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        id_tran.setText("--------------");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(id_tran)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(id_tran))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -614,18 +1199,18 @@ public class Restoran extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(makan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(makan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -639,12 +1224,12 @@ public class Restoran extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
                
-        if ("".equals(id.getText()) ||"".equals(kasir.getText())  || "".equals(mak_harga.getText()) || "".equals(min_harga.getText())|| "".equals(bayar.getText())|| "".equals(kmbl.getText())|| "".equals(total.getText())){
+        if ("".equals(kasir.getText())  || "".equals(mak_harga.getText()) || "".equals(min_harga.getText())|| "".equals(bayar.getText())|| "".equals(kmbl.getText())|| "".equals(total.getText())){
             JOptionPane.showMessageDialog(this, "Harap Lengakapi Data", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            String SQL = "insert into t_harga (id_transaksi,kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal)"
-                    + "VALUES('"+id.getText()+"','"+kasir.getText()+"','"+makan.getText()+"','" 
-                    +"Rp."+mak_harga.getText()+"','"+minum.getText()+"','"+"RP."+min_harga.getText()+"','"+bayar.getText()+"','"+kmbl.getText()+"','"+total.getText()+"','"+labeltanggal.getText()+"')";
+            String SQL = "insert into t_harga (kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal)"
+                    + "VALUES('"+kasir.getText()+"','"+makan.getText()+makan2.getText()+makan3.getText()+makan4.getText()+makan7.getText()+"','" 
+                    +"Rp."+mak_harga.getText()+"','"+minum.getText()+minum2.getText()+minum10.getText()+minum4.getText()+"','"+"RP."+min_harga.getText()+"','"+bayar.getText()+"','"+kmbl.getText()+"','"+total.getText()+"','"+labeltanggal.getText()+"')";
             int status;
             try {
                 status = KoneksiDB.execute(SQL);
@@ -656,9 +1241,7 @@ public class Restoran extends javax.swing.JFrame {
             }
             } catch (SQLException ex) {
                 java.util.logging.Logger.getLogger(Restoran.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            selectData();
-            
+            }      
                     
                     
                     
@@ -700,133 +1283,17 @@ public class Restoran extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printActionPerformed
 
-    private void bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bayarActionPerformed
-
-    private void kmblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kmblActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kmblActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Double hsl,hsi,hso = 0.00;
-        Double a, b ;
-        a = Double.parseDouble(mak_harga.getText().toString());
-        b = Double.parseDouble(min_harga.getText().toString());
-        hsl = a + b;
-        
-        if (hsl > 200000) {
-            diskon.setText("Anda Mendapatkan Diskon 10% \n dengan harga asli = Rp. "+ hsl);
-            hsi = (hsl * 10) / 100;
-            hso = hsl - hsi;
-            total.setText("Rp. "+hso.toString()+"0");
-        }else{
-            diskon.setText("Anda belanja masih di bawah Rp. 200.000 ");
-            total.setText("Rp. "+hsl.toString()+"0");
-        }
-         setTanggal();
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
-        // TODO add your handling code here:
-        Double hsl = 0.00;
-        Double a, b, c ;
-        a = Double.parseDouble(mak_harga.getText().toString());
-        b = Double.parseDouble(min_harga.getText().toString());
-        c = Double.parseDouble(bayar.getText().toString());
-        
-        hsl = c - (a + b) ;
-        kmbl.setText("RP. "+hsl.toString()+"0");
-        bayar.setText("RP. "+c+"0");
-    }//GEN-LAST:event_kembaliActionPerformed
-
-    private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalActionPerformed
-
     private void print1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print1ActionPerformed
         // TODO add your handling code here:
         selectData();
+        SetJam();
         setTanggal();
+        setKasir();
     }//GEN-LAST:event_print1ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String Makanan;
-        Double hsl = 0.0;       
-        Double a ;
-        a = Double.parseDouble(mak.getText().toString());
-         
-        if(jComboBox1.getSelectedItem().equals("Nasi Pecel")){
-            Makanan = "Nasi Pecel";
-            makan.setText("Nasi Pecel");
-            hsl = 10000 * a;
-            mak_harga.setText(hsl.toString());
-        }
-        else if (jComboBox1.getSelectedItem().equals("Rawon")){
-            Makanan = "Rawon";
-            makan.setText("Rawon");
-            hsl = 11000 * a;
-            mak_harga.setText(hsl.toString());
-        }
-        else if (jComboBox1.getSelectedItem().equals("Soto")){
-            Makanan = "Soto";
-            makan.setText("Soto");
-            hsl = 8000 * a;
-            mak_harga.setText(hsl.toString());
-        }
-        else if (jComboBox1.getSelectedItem().equals("Bacem")){
-            Makanan = "Bacem";
-            makan.setText("Bacem");
-            hsl = 4000 * a;
-            mak_harga.setText(hsl.toString());
-            
-        }else {
-            Makanan = null;
-                    }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        String Minuman;
-        if(jComboBox2.getSelectedItem().equals("Es Teh")){
-            Minuman = "Es Teh";
-            minum.setText("Es Teh");
-            min_harga.setText("2500");
-        }
-        else if (jComboBox2.getSelectedItem().equals("Es Jeruk")){
-            Minuman = "Es Jeruk";
-            minum.setText("Es Jeruk");
-            min_harga.setText("4000");
-        }
-        else if (jComboBox2.getSelectedItem().equals("Es Ijoh")){
-            Minuman = "Es Ijoh";
-            minum.setText("Es Ijoh");
-            min_harga.setText("3000");
-                  
-        }else {
-            Minuman = null;
-                    }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void min_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_min_hargaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_min_hargaActionPerformed
-
-    private void makActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_makActionPerformed
-
-    private void minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        id.setText("");
+    
         kasir.setText("");
         mak_harga.setText("");
         min_harga.setText("");
@@ -835,6 +1302,689 @@ public class Restoran extends javax.swing.JFrame {
         kmbl.setText("");
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void min2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_min2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_min2ActionPerformed
+
+    private void min1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_min1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_min1ActionPerformed
+
+    private void mak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mak3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mak3ActionPerformed
+
+    private void mak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mak2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mak2ActionPerformed
+
+    private void mak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mak1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mak1ActionPerformed
+
+    private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
+        // TODO add your handling code here:
+        String Minuman;
+        Double hsl = 0.;
+        Double a ;
+        a = Double.parseDouble(min2.getText().toString());
+        if(jComboBox9.getSelectedItem().equals("Es Teh")){
+            Minuman = "Es Teh";
+            minum10.setText(", "+"Es Teh");
+            hsl = (2500 * a)+k;
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox9.getSelectedItem().equals("Es Jeruk")){
+            Minuman = "Es Jeruk";
+            minum10.setText(", "+"Es Jeruk");
+            hsl = (4000 * a)+k;
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox9.getSelectedItem().equals("Es Ijoh")){
+            Minuman = "Es Ijoh";
+            minum10.setText(", "+"Es Ijoh");
+            hsl = (3000 * a)+k;
+            min_harga.setText(hsl.toString());
+
+        }else if (jComboBox9.getSelectedItem().equals("Es Aja KL")){
+            Minuman = "Es Aja KL";
+            minum10.setText(", "+"Es Aja KL");
+            hsl = (15000 * a)+k;
+            min_harga.setText(hsl.toString());}
+        else {
+            Minuman = null;
+        }j = Double.parseDouble(min_harga.getText().toString());
+        minum4.setText("");
+    }//GEN-LAST:event_jComboBox9ActionPerformed
+
+    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+        // TODO add your handling code here:
+        String Minuman;
+        Double hsl = 0.;
+        Double a ;
+        a = Double.parseDouble(min1.getText().toString());
+        if(jComboBox8.getSelectedItem().equals("Es Teh")){
+            Minuman = "Es Teh";
+            minum2.setText(", "+"Es Teh");
+            hsl = (2500 * a)+l;
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox8.getSelectedItem().equals("Es Jeruk")){
+            Minuman = "Es Jeruk";
+            minum2.setText(", "+"Es Jeruk");
+            hsl = (4000 * a)+l;
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox8.getSelectedItem().equals("Es Ijoh")){
+            Minuman = "Es Ijoh";
+            minum2.setText(", "+"Es Ijoh");
+            hsl = (3000 * a)+l;
+            min_harga.setText(hsl.toString());
+
+        }else if (jComboBox8.getSelectedItem().equals("Es Aja KL")){
+            Minuman = "Es Aja KL";
+            minum2.setText(", "+"Es Aja KL");
+            hsl = (15000 * a)+l;
+            min_harga.setText(hsl.toString());}
+        else {
+            Minuman = null;
+        }k = Double.parseDouble(min_harga.getText().toString());
+        minum10.setText("");
+        minum4.setText("");
+    }//GEN-LAST:event_jComboBox8ActionPerformed
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a ;
+        a = Double.parseDouble(mak3.getText().toString());
+        
+
+        if(jComboBox7.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            makan4.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+b;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox7.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            makan4.setText(", "+"Rawon");
+            hsl = (11000 * a)+b;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox7.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            makan4.setText(", "+"Soto");
+            hsl = (8000 * a)+b;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox7.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            makan4.setText(", "+"Bacem");
+            hsl = (4000 * a)+b;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox7.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            makan4.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+b;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox7.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            makan4.setText(", "+"Pizza");
+            hsl = (50000 * a)+b;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox7.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            makan4.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+b;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        minum10.setText("");
+        minum2.setText("");
+        makan7.setText("");
+        v = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a ;
+        a = Double.parseDouble(mak2.getText().toString());
+        
+
+        if(jComboBox6.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            makan3.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+n;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox6.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            makan3.setText(", "+"Rawon");
+            hsl = (11000 * a)+n;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox6.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            makan3.setText(", "+"Soto");
+            hsl = (8000 * a)+n;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox6.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            makan3.setText(", "+"Bacem");
+            hsl = (4000 * a)+n;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox6.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            makan3.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+n;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox6.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            makan3.setText(", "+"Pizza");
+            hsl = (50000 * a)+n;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox6.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            makan3.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+n;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        makan4.setText("");
+        minum10.setText("");
+        minum2.setText("");
+        makan7.setText("");
+        b = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_jComboBox6ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a,Q ;
+        a = Double.parseDouble(mak1.getText().toString());
+        
+        if(jComboBox5.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            makan2.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+m;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox5.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            makan2.setText(", "+"Rawon");
+            hsl = (11000 * a)+m;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox5.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            makan2.setText(", "+"Soto");
+            hsl = (8000 * a)+m;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox5.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            makan2.setText(", "+"Bacem");
+            hsl = (4000 * a)+m;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox5.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            makan2.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+m;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox5.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            makan2.setText(", "+"Pizza");
+            hsl = (50000 * a)+m;
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox5.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            makan2.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+m;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        
+        makan3.setText("");
+        makan4.setText("");
+        minum10.setText("");
+        minum2.setText("");
+        makan7.setText("");
+        n = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void jml2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jml2ActionPerformed
+        // TODO add your handling code here:et
+        getJumlah2();
+    }//GEN-LAST:event_jml2ActionPerformed
+
+    private void jml1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jml1ActionPerformed
+        // TODO add your handling code here:
+        getJumlah1();
+    }//GEN-LAST:event_jml1ActionPerformed
+
+    private void minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minActionPerformed
+
+    private void makActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_makActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        String Minuman;
+        Double hsl = 0.;
+        Double a ;
+        a = Double.parseDouble(min.getText().toString());
+        if(jComboBox2.getSelectedItem().equals("Es Teh")){
+            Minuman = "Es Teh";
+            minum.setText("Es Teh");
+            hsl = (2500 * a);
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox2.getSelectedItem().equals("Es Jeruk")){
+            Minuman = "Es Jeruk";
+            minum.setText("Es Jeruk");
+            hsl = (4000 * a);
+            min_harga.setText(hsl.toString());
+        }
+        else if (jComboBox2.getSelectedItem().equals("Es Ijoh")){
+            Minuman = "Es Ijoh";
+            minum.setText("Es Ijoh");
+            hsl = (3000 * a);
+            min_harga.setText(hsl.toString());
+
+        }else if (jComboBox2.getSelectedItem().equals("Es Aja KL")){
+            Minuman = "Es Aja KL";
+            minum.setText("Es Aja KL");
+            hsl = (15000 * a);
+            min_harga.setText(hsl.toString());}
+        else {
+            Minuman = null;
+        }l = Double.parseDouble(min_harga.getText().toString());
+        minum2.setText("");
+        minum10.setText("");
+        minum4.setText("");
+        
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.;
+        Double a ;
+        a = Double.parseDouble(mak.getText().toString());
+
+        if(jComboBox1.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            makan.setText("Nasi Pecel");
+            hsl = (10000 * a);
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox1.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            makan.setText("Rawon");
+            hsl = (11000 * a);
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox1.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            makan.setText("Soto");
+            hsl = (8000 * a);
+            mak_harga.setText(hsl.toString());
+        }
+        else if (jComboBox1.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            makan.setText("Bacem");
+            hsl = (4000 * a);
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox1.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            makan.setText("Ayam Betutu");
+            hsl = (30000 * a);
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox1.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            makan.setText("Pizza");
+            hsl = (50000 * a);
+            mak_harga.setText(hsl.toString());
+
+        }else if (jComboBox1.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            makan.setText("Gorengan Jumbo");
+            hsl = (40000 * a);
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;
+        }
+        makan2.setText("");
+        makan3.setText("");
+        makan4.setText("");
+        minum10.setText("");
+        minum2.setText("");
+        makan7.setText("");
+        m = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalActionPerformed
+
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+       // TODO add your handling code here:
+        
+        if("".equals(bayar.getText())){
+          JOptionPane.showMessageDialog(this, "Pesanan belum di bayar", "Warning!!!", JOptionPane.INFORMATION_MESSAGE);  
+          
+        }
+        else{
+            Double hsl = 0.00;
+            
+        Double a, b, c ;
+        a = Double.parseDouble(mak_harga.getText().toString());
+        b = Double.parseDouble(min_harga.getText().toString());
+        c = Double.parseDouble(bayar.getText().toString());
+            hsl = c - (a + b) ;
+        kmbl.setText("RP. "+hsl.toString()+"0");
+        if (hsl < 0){
+            JOptionPane.showMessageDialog(this, "Pembayaran kurang", "Warning!!!", JOptionPane.INFORMATION_MESSAGE);  
+            bayar.setText("");
+        }else{
+            bayar.setText("RP. "+c+"0");
+        }
+        
+        }
+        
+    }//GEN-LAST:event_kembaliActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        if("".equals(mak_harga.getText()) || "".equals(min_harga.getText())){
+          JOptionPane.showMessageDialog(this, "Data pesanan belum di tambahkan", "Warning!!!", JOptionPane.INFORMATION_MESSAGE);   
+        }else{Double hsl,hsi,hso = 0.00;
+        Double a, b ;
+        a = Double.parseDouble(mak_harga.getText().toString());
+        b = Double.parseDouble(min_harga.getText().toString());
+        hsl = a + b;
+            if (hsl > 200000) {
+            diskon.setText("Anda Mendapatkan Diskon 10% \n dengan harga asli = Rp. "+ hsl);
+            hsi = (hsl * 10) / 100;
+            hso = hsl - hsi;
+            total.setText("Rp. "+hso.toString()+"0");
+        }else if(hsl < 200000){
+            diskon.setText("Anda belanja masih di bawah Rp. 200.000 ");
+            total.setText("Rp. "+hsl.toString()+"0");
+            
+        }
+        }
+        
+        setTanggal();
+        setKasir();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void kmblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kmblActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kmblActionPerformed
+
+    private void bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bayarActionPerformed
+
+    private void min_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_min_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_min_hargaActionPerformed
+
+    private void mak_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mak_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mak_hargaActionPerformed
+
+    private void a5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a5ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a ;
+        a = Double.parseDouble(b5.getText().toString());
+        
+
+        if(a5.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            minum10.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+v;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a5.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            minum10.setText(", "+"Rawon");
+            hsl = (11000 * a)+v;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a5.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            minum10.setText(", "+"Soto");
+            hsl = (8000 * a)+v;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a5.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            minum10.setText(", "+"Bacem");
+            hsl = (4000 * a)+v;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a5.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            minum10.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+v;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a5.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            minum10.setText(", "+"Pizza");
+            hsl = (50000 * a)+v;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a5.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            minum10.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+v;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        minum2.setText("");
+        makan7.setText("");
+        c = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_a5ActionPerformed
+
+    private void a6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a6ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a ;
+        a = Double.parseDouble(b6.getText().toString());
+        
+
+        if(a6.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            minum2.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+c;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a6.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            minum2.setText(", "+"Rawon");
+            hsl = (11000 * a)+c;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a6.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            minum2.setText(", "+"Soto");
+            hsl = (8000 * a)+c;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a6.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            minum2.setText(", "+"Bacem");
+            hsl = (4000 * a)+c;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a6.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            minum2.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+c;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a6.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            minum2.setText(", "+"Pizza");
+            hsl = (50000 * a)+c;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a6.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            minum2.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+c;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        makan7.setText("");
+        x = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_a6ActionPerformed
+
+    private void a7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a7ActionPerformed
+        // TODO add your handling code here:
+        String Makanan;
+        Double hsl = 0.0;
+        Double a ;
+        a = Double.parseDouble(b7.getText().toString());
+        
+
+        if(a7.getSelectedItem().equals("Nasi Pecel")){
+            Makanan = "Nasi Pecel";
+            makan7.setText(", "+"Nasi Pecel");
+            hsl = (10000 * a)+x;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a7.getSelectedItem().equals("Rawon")){
+            Makanan = "Rawon";
+            makan7.setText(", "+"Rawon");
+            hsl = (11000 * a)+x;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a7.getSelectedItem().equals("Soto")){
+            Makanan = "Soto";
+            makan7.setText(", "+"Soto");
+            hsl = (8000 * a)+x;
+            mak_harga.setText(hsl.toString());
+        }
+        else if (a7.getSelectedItem().equals("Bacem")){
+            Makanan = "Bacem";
+            makan7.setText(", "+"Bacem");
+            hsl = (4000 * a)+x;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a7.getSelectedItem().equals("Ayam Betutu")){
+            Makanan = "Ayam Betutu";
+            makan7.setText(", "+"Ayam Betutu");
+            hsl = (30000 * a)+x;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a7.getSelectedItem().equals("Pizza")){
+            Makanan = "Pizza";
+            makan7.setText(", "+"Pizza");
+            hsl = (50000 * a)+x;
+            mak_harga.setText(hsl.toString());
+
+        }else if (a7.getSelectedItem().equals("Gorengan Jumbo")){
+            Makanan = "Gorengan Jumbo";
+            makan7.setText(", "+"Gorengan Jumbo");
+            hsl = (40000 * a)+x;
+            mak_harga.setText(hsl.toString());
+
+        }
+        else {
+            Makanan = null;}
+        z = Double.parseDouble(mak_harga.getText().toString());
+    }//GEN-LAST:event_a7ActionPerformed
+
+    private void b5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b5ActionPerformed
+
+    private void b6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b6ActionPerformed
+
+    private void b7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b7ActionPerformed
+
+    private void a9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a9ActionPerformed
+        // TODO add your handling code here:
+        String Minuman;
+        Double hsl = 0.;
+        Double a ;
+        a = Double.parseDouble(b9.getText().toString());
+        if(a9.getSelectedItem().equals("Es Teh")){
+            Minuman = "Es Teh";
+            minum4.setText(", "+"Es Teh");
+            hsl = (2500 * a)+j;
+            min_harga.setText(hsl.toString());
+        }
+        else if (a9.getSelectedItem().equals("Es Jeruk")){
+            Minuman = "Es Jeruk";
+            minum4.setText(", "+"Es Jeruk");
+            hsl = (4000 * a)+j;
+            min_harga.setText(hsl.toString());
+        }
+        else if (a9.getSelectedItem().equals("Es Ijoh")){
+            Minuman = "Es Ijoh";
+            minum4.setText(", "+"Es Ijoh");
+            hsl = (3000 * a)+j;
+            min_harga.setText(hsl.toString());
+
+        }else if (a9.getSelectedItem().equals("Es Aja KL")){
+            Minuman = "Es Aja KL";
+            minum4.setText(", "+"Es Aja KL");
+            hsl = (15000 * a)+j;
+            min_harga.setText(hsl.toString());}
+        else {
+            Minuman = null;
+        }h = Double.parseDouble(min_harga.getText().toString());
+    }//GEN-LAST:event_a9ActionPerformed
+
+    private void b9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -872,14 +2022,27 @@ public class Restoran extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> a5;
+    private javax.swing.JComboBox<String> a6;
+    private javax.swing.JComboBox<String> a7;
+    private javax.swing.JComboBox<String> a9;
+    private javax.swing.JTextField b5;
+    private javax.swing.JTextField b6;
+    private javax.swing.JTextField b7;
+    private javax.swing.JTextField b9;
     private javax.swing.JTextField bayar;
     private javax.swing.JButton delete;
     private javax.swing.JLabel diskon;
-    private javax.swing.JTextField id;
+    private javax.swing.JLabel id_tran;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -904,28 +2067,61 @@ public class Restoran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kasir;
+    private javax.swing.JLabel jamlabel;
+    private javax.swing.JComboBox<String> jml1;
+    private javax.swing.JComboBox<String> jml2;
+    private javax.swing.JLabel kasir;
     private javax.swing.JButton kembali;
     private javax.swing.JTextField kmbl;
     private javax.swing.JLabel labeltanggal;
     private javax.swing.JTextField mak;
+    private javax.swing.JTextField mak1;
+    private javax.swing.JTextField mak2;
+    private javax.swing.JTextField mak3;
     private javax.swing.JTextField mak_harga;
     private javax.swing.JLabel makan;
+    private javax.swing.JPanel makan1;
+    private javax.swing.JLabel makan2;
+    private javax.swing.JLabel makan3;
+    private javax.swing.JLabel makan4;
+    private javax.swing.JLabel makan6;
+    private javax.swing.JLabel makan7;
+    private javax.swing.JLabel makan8;
+    private javax.swing.JLabel makan9;
     private javax.swing.JTextField min;
+    private javax.swing.JTextField min1;
+    private javax.swing.JTextField min2;
     private javax.swing.JTextField min_harga;
     private javax.swing.JLabel minum;
+    private javax.swing.JLabel minum10;
+    private javax.swing.JLabel minum2;
+    private javax.swing.JLabel minum3;
+    private javax.swing.JLabel minum4;
     private javax.swing.JButton print;
     private javax.swing.JButton print1;
     private javax.swing.JButton save;
@@ -953,18 +2149,235 @@ public class Restoran extends javax.swing.JFrame {
                               
               
                 String data[] = {id_transaksi,kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal};
-                
+                id_tran.setText(data[0]);
                 dtm.addRow(data);
             }
             tabel.setModel(dtm);
+            
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Restoran.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
      }
-     public void setTanggal(){
+     
+
+    private void getJumlah1() {
+        if(jml1.getSelectedItem().equals("1")){
+            jComboBox6.setVisible(false);
+            jComboBox7.setVisible(false);
+            mak2.setVisible(false);
+            mak3.setVisible(false);
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(false);
+            mak.setVisible(true);
+            mak1.setVisible(false);
+            a5.setVisible(false);
+            a6.setVisible(false);
+            b5.setVisible(false);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            
+            jml = 1;
+        }
+        if(jml1.getSelectedItem().equals("2")){
+            jComboBox6.setVisible(false);
+            jComboBox7.setVisible(false);
+            mak2.setVisible(false);
+            mak3.setVisible(false);
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            a5.setVisible(false);
+            a6.setVisible(false);
+            b5.setVisible(false);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            jml = 2;
+        }else if (jml1.getSelectedItem().equals("3")){
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            jComboBox6.setVisible(true);
+            jComboBox7.setVisible(false);
+            mak2.setVisible(true);
+            mak3.setVisible(false);
+            a5.setVisible(false);
+            a6.setVisible(false);
+            b5.setVisible(false);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            jml = 3;
+        }else if (jml1.getSelectedItem().equals("4")){
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            jComboBox6.setVisible(true);
+            jComboBox7.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            mak2.setVisible(true);
+            mak3.setVisible(true);
+            a5.setVisible(false);
+            a6.setVisible(false);
+            b5.setVisible(false);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            jml = 4;
+        } 
+            else if (jml1.getSelectedItem().equals("5")){
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            jComboBox6.setVisible(true);
+            jComboBox7.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            mak2.setVisible(true);
+            mak3.setVisible(true);
+            a5.setVisible(true);
+            a6.setVisible(false);
+            b5.setVisible(true);
+            b6.setVisible(false);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            jml = 5;
+        }
+        else if (jml1.getSelectedItem().equals("6")){
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            jComboBox6.setVisible(true);
+            jComboBox7.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            mak2.setVisible(true);
+            mak3.setVisible(true);
+            a5.setVisible(true);
+            a6.setVisible(true);
+            b5.setVisible(true);
+            b6.setVisible(true);
+            a7.setVisible(false);
+            b7.setVisible(false);
+            jml = 6;
+        }
+        else if (jml1.getSelectedItem().equals("7")){
+            jComboBox1.setVisible(true);
+            jComboBox5.setVisible(true);
+            jComboBox6.setVisible(true);
+            jComboBox7.setVisible(true);
+            mak.setVisible(true);
+            mak1.setVisible(true);
+            mak2.setVisible(true);
+            mak3.setVisible(true);
+            a5.setVisible(true);
+            a6.setVisible(true);
+            b5.setVisible(true);
+            b6.setVisible(true);
+            a7.setVisible(true);
+            b7.setVisible(true);
+            jml = 7;
+        }
+//To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void getJumlah2() {
+        if(jml2.getSelectedItem().equals("1")){
+            jComboBox9.setVisible(false);
+            
+            min2.setVisible(false);
+           
+            jComboBox2.setVisible(true);
+            jComboBox8.setVisible(false);
+            min.setVisible(true);
+            min1.setVisible(false);
+            a9.setVisible(false);
+            b9.setVisible(false);
+            jml = 1;
+        }
+        if(jml2.getSelectedItem().equals("2")){
+            jComboBox9.setVisible(false);
+            
+            min2.setVisible(false);
+            jComboBox2.setVisible(true);
+            jComboBox8.setVisible(true);
+            min.setVisible(true);
+            min1.setVisible(true);
+            a9.setVisible(false);
+            b9.setVisible(false);
+            jml = 2;
+        }else if (jml2.getSelectedItem().equals("3")){
+            jComboBox2.setVisible(true);
+            jComboBox8.setVisible(true);
+            min.setVisible(true);
+            min1.setVisible(true);
+            jComboBox9.setVisible(true);
+            a9.setVisible(false);
+            b9.setVisible(false);
+            min2.setVisible(true);
+            
+            jml = 3;
+        }else if (jml2.getSelectedItem().equals("4")){
+            jComboBox2.setVisible(true);
+            jComboBox8.setVisible(true);
+            min.setVisible(true);
+            min1.setVisible(true);
+            jComboBox9.setVisible(true);
+            
+            min2.setVisible(true);
+            a9.setVisible(true);
+            b9.setVisible(true);
+            jml = 4;
+        }//To change body of generated methods, choose Tools | Templates.
+    }
+         public void setTanggal(){
         java.util.Date skrg = new java.util.Date();
         java.text.SimpleDateFormat kal = new
         java.text.SimpleDateFormat("dd/MM/yyyy");
         labeltanggal.setText(kal.format(skrg));
     }
-}
+     public void setKasir(){ 
+        String SQL = "SELECT * FROM tb_akun";
+        ResultSet result ;
+        try {            
+            result = KoneksiDB.executeQuery(SQL);
+            while(result.next()){
+                String namaKasir = result.getString(1);
+                kasir.setText(namaKasir);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Restoran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }
+     public void SetJam(){
+         ActionListener taskPerformer = new ActionListener (){
+             private String nol_jam;
+             private String nol_menit;
+             private String nol_detik;
+               public void actionPerformed(ActionEvent evt) {
+                 Date dt = new Date();
+                int nilai_jam = dt.getHours();
+                int nilai_menit = dt.getMinutes();
+                int nilai_detik = dt.getSeconds(); //To change body of generated methods, choose Tools | Templates.
+                if (nilai_jam <= 9){
+                    nol_jam = "0";
+                }
+                if (nilai_menit <= 9){
+                    nol_menit = "0";
+                }
+                if (nilai_detik <= 9){
+                    nol_detik = "0";
+                }
+                String jam = nol_jam + Integer.toString(nilai_jam);
+                String menit = nol_menit + Integer.toString(nilai_menit);
+                String detik = nol_detik + Integer.toString(nilai_detik);
+                jamlabel.setText(jam + ":"+ menit +":"+detik);
+             }
+             
+         };new Timer(100, taskPerformer).start();
+     }
+     }
+
