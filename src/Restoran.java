@@ -27,6 +27,9 @@ String jns = "";
 Double m,n,b,v,c,x,z,l,k,j,h;
     int jml;
     Double q,w ;
+    String nol_jam = "";
+    String nol_menit = "";
+    String nol_detik = "";
        
     
     /**
@@ -56,6 +59,9 @@ Double m,n,b,v,c,x,z,l,k,j,h;
             jComboBox5.setVisible(false);
             mak.setVisible(true);
             mak1.setVisible(false);
+            SetJam();
+            setTanggal();
+            setKasir();
     }
 
     /**
@@ -199,7 +205,7 @@ Double m,n,b,v,c,x,z,l,k,j,h;
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tanggal & Jam:");
+        jLabel3.setText("Tanggal:");
 
         labeltanggal.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         labeltanggal.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,20 +229,20 @@ Double m,n,b,v,c,x,z,l,k,j,h;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
+                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labeltanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jamlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jamlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,10 +253,10 @@ Double m,n,b,v,c,x,z,l,k,j,h;
                     .addComponent(jamlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labeltanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(kasir, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labeltanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1137,17 +1143,17 @@ Double m,n,b,v,c,x,z,l,k,j,h;
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_Transaksi", "Kasir", "Makanan", "Harga", "Minuman", "Harga", "Bayar", "Kembali", "Total", "Tanggal"
+                "ID_Transaksi", "Kasir", "Makanan", "Harga", "Minuman", "Harga", "Bayar", "Kembali", "Total", "Tanggal", "Jam"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1227,9 +1233,9 @@ Double m,n,b,v,c,x,z,l,k,j,h;
         if ("".equals(kasir.getText())  || "".equals(mak_harga.getText()) || "".equals(min_harga.getText())|| "".equals(bayar.getText())|| "".equals(kmbl.getText())|| "".equals(total.getText())){
             JOptionPane.showMessageDialog(this, "Harap Lengakapi Data", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            String SQL = "insert into t_harga (kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal)"
+            String SQL = "insert into t_harga (kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal,jam)"
                     + "VALUES('"+kasir.getText()+"','"+makan.getText()+makan2.getText()+makan3.getText()+makan4.getText()+makan7.getText()+"','" 
-                    +"Rp."+mak_harga.getText()+"','"+minum.getText()+minum2.getText()+minum10.getText()+minum4.getText()+"','"+"RP."+min_harga.getText()+"','"+bayar.getText()+"','"+kmbl.getText()+"','"+total.getText()+"','"+labeltanggal.getText()+"')";
+                    +"Rp."+mak_harga.getText()+"','"+minum.getText()+minum2.getText()+minum10.getText()+minum4.getText()+"','"+"RP."+min_harga.getText()+"','"+bayar.getText()+"','"+kmbl.getText()+"','"+total.getText()+"','"+labeltanggal.getText()+"','"+jamlabel.getText()+"')";
             int status;
             try {
                 status = KoneksiDB.execute(SQL);
@@ -1286,9 +1292,6 @@ Double m,n,b,v,c,x,z,l,k,j,h;
     private void print1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print1ActionPerformed
         // TODO add your handling code here:
         selectData();
-        SetJam();
-        setTanggal();
-        setKasir();
     }//GEN-LAST:event_print1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -2129,7 +2132,7 @@ Double m,n,b,v,c,x,z,l,k,j,h;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
      private void selectData(){
-         String kolom[] = {"ID_Transaksi","Kasir", "Makanan", "Harga", "Minuman", "Harga","Bayar","Kembali","Total","Tanggal"};
+         String kolom[] = {"ID_Transaksi","Kasir", "Makanan", "Harga", "Minuman", "Harga","Bayar","Kembali","Total","Tanggal","Jam"};
         DefaultTableModel dtm = new DefaultTableModel (null, kolom);
         String SQL = "SELECT * FROM t_harga";
         ResultSet rs;
@@ -2146,9 +2149,10 @@ Double m,n,b,v,c,x,z,l,k,j,h;
                 String kembali = rs.getString(8);
                 String total = rs.getString(9);
                 String tanggal = rs.getString(10);
+                String jam = rs.getString(11);
                               
               
-                String data[] = {id_transaksi,kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal};
+                String data[] = {id_transaksi,kasir,makanan,h_makanan,minuman,h_minuman,bayar,kembali,total,tanggal,jam};
                 id_tran.setText(data[0]);
                 dtm.addRow(data);
             }
@@ -2353,31 +2357,30 @@ Double m,n,b,v,c,x,z,l,k,j,h;
         
         }
      public void SetJam(){
-         ActionListener taskPerformer = new ActionListener (){
-             private String nol_jam;
-             private String nol_menit;
-             private String nol_detik;
-               public void actionPerformed(ActionEvent evt) {
-                 Date dt = new Date();
+         ActionListener taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date dt = new Date();
                 int nilai_jam = dt.getHours();
                 int nilai_menit = dt.getMinutes();
-                int nilai_detik = dt.getSeconds(); //To change body of generated methods, choose Tools | Templates.
-                if (nilai_jam <= 9){
+                int nilai_detik = dt.getSeconds();
+                if (nilai_jam <= 9) {
                     nol_jam = "0";
                 }
-                if (nilai_menit <= 9){
+                if (nilai_menit <=9) {
                     nol_menit = "0";
                 }
-                if (nilai_detik <= 9){
+                if (nilai_detik <= 9) {
                     nol_detik = "0";
                 }
+                
                 String jam = nol_jam + Integer.toString(nilai_jam);
                 String menit = nol_menit + Integer.toString(nilai_menit);
                 String detik = nol_detik + Integer.toString(nilai_detik);
-                jamlabel.setText(jam + ":"+ menit +":"+detik);
-             }
-             
-         };new Timer(100, taskPerformer).start();
+                jamlabel.setText("Jam "+jam+ ":" + menit +":"+detik);
+            }
+        };
+    new Timer(100, taskPerformer).start();
      }
      }
 
